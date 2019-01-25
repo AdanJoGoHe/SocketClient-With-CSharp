@@ -43,6 +43,7 @@
             // 
             // TextoChat
             // 
+            this.TextoChat.Enabled = false;
             this.TextoChat.Location = new System.Drawing.Point(43, 52);
             this.TextoChat.Name = "TextoChat";
             this.TextoChat.Size = new System.Drawing.Size(351, 270);
@@ -83,6 +84,7 @@
             // 
             // TextoAEnviar
             // 
+            this.TextoAEnviar.Enabled = false;
             this.TextoAEnviar.Location = new System.Drawing.Point(433, 52);
             this.TextoAEnviar.Name = "TextoAEnviar";
             this.TextoAEnviar.Size = new System.Drawing.Size(261, 270);
@@ -100,9 +102,9 @@
             // 
             // BotonConectar
             // 
-            this.BotonConectar.Location = new System.Drawing.Point(319, 26);
+            this.BotonConectar.Location = new System.Drawing.Point(309, 26);
             this.BotonConectar.Name = "BotonConectar";
-            this.BotonConectar.Size = new System.Drawing.Size(75, 23);
+            this.BotonConectar.Size = new System.Drawing.Size(85, 23);
             this.BotonConectar.TabIndex = 7;
             this.BotonConectar.Text = "Conectar";
             this.BotonConectar.UseVisualStyleBackColor = true;
@@ -110,6 +112,7 @@
             // 
             // BotonEnviar
             // 
+            this.BotonEnviar.Enabled = false;
             this.BotonEnviar.Location = new System.Drawing.Point(515, 328);
             this.BotonEnviar.Name = "BotonEnviar";
             this.BotonEnviar.Size = new System.Drawing.Size(75, 23);
@@ -130,12 +133,13 @@
             // 
             // Desconectar
             // 
-            this.Desconectar.Location = new System.Drawing.Point(319, -3);
+            this.Desconectar.Location = new System.Drawing.Point(309, 26);
             this.Desconectar.Name = "Desconectar";
-            this.Desconectar.Size = new System.Drawing.Size(75, 23);
+            this.Desconectar.Size = new System.Drawing.Size(85, 23);
             this.Desconectar.TabIndex = 11;
             this.Desconectar.Text = "Desconectar";
             this.Desconectar.UseVisualStyleBackColor = true;
+            this.Desconectar.Visible = false;
             this.Desconectar.Click += new System.EventHandler(this.Desconectar_Click);
             // 
             // Form1

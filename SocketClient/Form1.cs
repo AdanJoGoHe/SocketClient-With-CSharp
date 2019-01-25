@@ -24,12 +24,25 @@ namespace SocketClient
             InitializeComponent();
         }
         //Metodos
+        private void herramientasDeConexion(bool bo)
+        {
+            TextoIP.Enabled = bo;
+            TextoPuerto.Enabled = bo;
+            BotonConectar.Enabled = bo;
+        }
+        private void herramientasDeMensajeria(bool bo)
+        {
+            TextoAEnviar.Enabled = bo;
+            BotonEnviar.Enabled = bo;
+            Desconectar.Visible = bo;
+        }
+
         private void BotonConectar_Click(object sender, EventArgs e)
         {
             
             if(TextoIP.Text == "" || TextoPuerto.Text == "")
             {
-                string error = "\n Has dejado vacio la IP o el Puerto";
+                string error = "Has dejado vacio la IP o el Puerto \n";
 
                 AppendText(TextoChat, Color.Red, error);
             }
@@ -37,13 +50,13 @@ namespace SocketClient
             {
                 try
                 {
+                    herramientasDeConexion(false);
                     tcpclnt = new TcpClient();
-
                     int puerto = Convert.ToInt32(TextoPuerto.Text);
-
                     tcpclnt.Connect(TextoIP.Text, puerto);
                     if (tcpclnt.Connected)
                     {
+                        herramientasDeMensajeria(true);
                         AppendText(TextoChat,Color.DarkBlue, "Se ha conectado satisfactoriamente \n"); 
                         ThreadStart RunLeer = new ThreadStart(leerServidor);
                         Thread HiloLeer = new Thread(RunLeer);
@@ -52,12 +65,15 @@ namespace SocketClient
                 }
                 catch (SocketException _se)
                 {
-
+                    bool bo = true;
+                    herramientasDeConexion(bo);
                     AppendText(TextoChat, Color.Red, "\n"+_se.ToString());
 
                 }
                 catch (Exception _e)
                 {
+                    bool bo = true;
+                    herramientasDeConexion(bo);
                     AppendText(TextoChat,Color.Red, "\n" + _e.ToString());
                 }
             }
@@ -136,16 +152,26 @@ namespace SocketClient
 
         private void Desconectar_Click(object sender, EventArgs e)
         {
-            
+            try
+            {
                 tcpclnt.Close();
-                if(tcpclnt.Connected)
+                if (tcpclnt.Connected)
                 {
                     AppendText(TextoChat, Color.Red, "Ha ocurrido un error al intentar desconectarse : \n");
                 }
                 else
                 {
+                    herramientasDeConexion(true);
+                    herramientasDeMensajeria(false);
                     AppendText(TextoChat, Color.DarkBlue, "Se ha desconectado Correctamente \n");
                 }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+                
             
         }
     }

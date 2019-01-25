@@ -17,6 +17,17 @@ namespace SocketClient
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+
+            if (Application.MessageLoop)
+            {
+                // WinForms app
+                Application.Exit();
+            }
+            else
+            {
+                // Console app
+                Environment.Exit(1);
+            }
         }
     }
 }
